@@ -1,30 +1,29 @@
-name: Secret Scan (Paso 3)
+name: SCA (Paso 4)
 
 on:
-  workflow_dispatch:
+  push:
+  pull_request:
+    types: [opened, synchronize, reopened]
 
 jobs:
   scan:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
 
-      - uses: fluidattacks/ss-action@0.2.0
+      - uses: fluidattacks/sca-action@1.2.0
         id: scan
         with:
-          scan_config_path: .github/paso3/ss-config.yaml
-          scanner_mode: full
+          scan_config_path: .github/paso4/sca-config.yaml
 
       - name: Subir CSV
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: paso3-ss-results
-          path: results-ss.csv
+          name: paso4-sca-results
+          path: results-sca.csv
           if-no-files-found: ignore
 
-      - name: Fallar si hay secretos
+      - name: Fallar si supera umbral de severidad
         if: steps.scan.outputs.vulnerabilities_found == 'true'
         run: exit 1

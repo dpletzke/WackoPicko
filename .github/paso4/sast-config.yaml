@@ -1,0 +1,12 @@
+language: ES
+strict: true
+strictness_threshold: high
+output:
+  file_path: results-sast.csv
+  format: CSV
+sast:
+  include:
+    - website/
+  exclude:
+    - website/css/blueprint/
+    - website/upload/

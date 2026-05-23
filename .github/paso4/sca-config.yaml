@@ -1,0 +1,12 @@
+language: ES
+strict: true
+strictness_threshold: high
+output:
+  file_path: results-sca.csv
+  format: CSV
+sca:
+  include:
+    - .
+  exclude:
+    - website/css/blueprint/
+    - website/upload/
