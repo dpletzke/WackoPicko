@@ -1,0 +1,25 @@
+name: SCA (Paso 3)
+
+on:
+  push:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: fluidattacks/sca-action@1.2.0
+        id: scan
+        with:
+          scan_config_path: .github/paso3/sca-config.yaml
+
+      - name: Subir CSV
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: paso3-sca-results
+          path: results-sca.csv
+          if-no-files-found: ignore

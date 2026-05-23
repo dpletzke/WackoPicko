@@ -1,0 +1,28 @@
+name: SAST (Paso 3)
+
+on:
+  push:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: fluidattacks/sast-action@1.3.0
+        id: scan
+        with:
+          scan_config_path: .github/paso3/sast-config.yaml
+          scanner_mode: full
+
+      - name: Subir CSV
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: paso3-sast-results
+          path: results-sast.csv
+          if-no-files-found: ignore
