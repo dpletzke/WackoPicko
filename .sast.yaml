@@ -1,0 +1,13 @@
+namespace: wackopicko
+working_dir: .
+language: ES
+strict: false
+output:
+  file_path: ./Fluid-Attacks-Results.csv
+  format: CSV
+sast:
+  include:
+    - website/
+  exclude:
+    - glob(website/css/blueprint/**)
+    - glob(website/upload/**)
