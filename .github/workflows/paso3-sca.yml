@@ -23,3 +23,7 @@ jobs:
           name: paso3-sca-results
           path: results-sca.csv
           if-no-files-found: ignore
+
+      - name: Fallar si hay vulnerabilidades
+        if: steps.scan.outputs.vulnerabilities_found == 'true'
+        run: exit 1
