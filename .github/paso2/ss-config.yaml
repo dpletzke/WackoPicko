@@ -1,3 +1,7 @@
+namespace: wackopicko
+working_dir: .
+language: ES
+strict: false
 output:
   file_path: results-ss.sarif
   format: SARIF
@@ -5,5 +9,5 @@ ss:
   include:
     - website/
   exclude:
-    - website/css/blueprint/
-    - website/upload/
+    - website/css/blueprint/**
+    - website/upload/**

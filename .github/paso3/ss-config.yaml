@@ -1,3 +1,7 @@
+namespace: wackopicko
+working_dir: .
+language: ES
+strict: true
 output:
   file_path: results-ss.csv
   format: CSV
@@ -5,5 +9,5 @@ ss:
   include:
     - website/
   exclude:
-    - website/css/blueprint/
-    - website/upload/
+    - website/css/blueprint/**
+    - website/upload/**

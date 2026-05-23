@@ -1,3 +1,5 @@
+namespace: wackopicko
+working_dir: .
 language: ES
 strict: true
 strictness_threshold: high
@@ -8,5 +10,5 @@ sast:
   include:
     - website/
   exclude:
-    - website/css/blueprint/
-    - website/upload/
+    - glob(website/css/blueprint/**)
+    - glob(website/upload/**)
