@@ -12,12 +12,5 @@ jobs:
       - uses: actions/checkout@v4
 
       - uses: fluidattacks/sca-action@1.2.0
-        id: scan
         with:
           scan_config_path: .github/sca-config.yaml
-
-      - name: Upload SARIF
-        if: always() && steps.scan.outputs.sarif_file != ''
-        uses: github/codeql-action/upload-sarif@v4
-        with:
-          sarif_file: ${{ steps.scan.outputs.sarif_file }}
