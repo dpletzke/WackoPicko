@@ -1,0 +1,9 @@
+output:
+  file_path: results-ss.sarif
+  format: SARIF
+ss:
+  include:
+    - website/
+  exclude:
+    - website/css/blueprint/
+    - website/upload/
